@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${db.host:localhost}:27017/${db.name:ecommerce-storage}
+      database: ${db.name:ecommerce-storage}
+      auto-index-creation: true
+logging:
+  level:
+    web: debug
