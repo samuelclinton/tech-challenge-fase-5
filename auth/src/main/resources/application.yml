@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${db.host:localhost}:27017/${db.name:ecommerce-auth}
+      database: ${db.name:ecommerce-auth}
+      auto-index-creation: true
+logging:
+  level:
+    web: debug
