@@ -1,0 +1,11 @@
+server:
+  port: 8082
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${db.host:localhost}:27017/${db.name:ecommerce-shopping-cart}
+      database: ${db.name:ecommerce-shopping-cart}
+      auto-index-creation: true
+logging:
+  level:
+    web: debug
