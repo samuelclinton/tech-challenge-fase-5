@@ -9,6 +9,4 @@ public interface UserRepository extends ReactiveMongoRepository<User, String> {
     Mono<User> findByEmail(String email);
     Mono<User> findByCpf(String cpf);
 
-    Mono<Long> countByEmailOrCpf(String email, String cpf);
-
 }
