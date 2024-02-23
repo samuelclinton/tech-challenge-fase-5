@@ -3,8 +3,6 @@ package com.ecommerce.auth.api.controller;
 import com.ecommerce.auth.api.model.ChangeAuthorityDto;
 import com.ecommerce.auth.api.model.ChangeEmailDto;
 import com.ecommerce.auth.api.model.ChangePasswordDto;
-import com.ecommerce.auth.api.model.NewUserDto;
-import com.ecommerce.auth.domain.model.Authority;
 import com.ecommerce.auth.domain.model.User;
 import com.ecommerce.auth.domain.service.UserService;
 import jakarta.validation.Valid;
@@ -21,18 +19,6 @@ public class UserControllerImpl implements UserController {
 
     public UserControllerImpl(UserService userService) {
         this.userService = userService;
-    }
-
-    @Override
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<User> register(@RequestBody @Valid NewUserDto newUserDto) {
-        User newUser = new User(null,
-                newUserDto.getEmail(),
-                newUserDto.getPassword(),
-                newUserDto.getCpf(),
-                Authority.valueOf(newUserDto.getAuthority()));
-        return userService.register(newUser);
     }
 
     @Override
