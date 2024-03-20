@@ -7,11 +7,11 @@ import java.lang.annotation.*;
 
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = AuthorityValidator.class)
+@Constraint(validatedBy = RoleValidator.class)
 @Documented
-public @interface ValidAuthority {
+public @interface ValidRole {
 
-    String message() default "Invalid authority";
+    String message() default "Invalid role";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 

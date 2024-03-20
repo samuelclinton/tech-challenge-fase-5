@@ -7,3 +7,7 @@ spring:
 logging:
   level:
     web: debug
+ecommerce:
+  security:
+    jwt:
+      secret: YWI4NjNiZjYtODBiNC00MTVkLWIzNmItZTMzMmNjZjVkZjg4N2FiY2FjMmUtY2FhNC00NDVjLThiMmUtZWMxY2FkNzJmNDFm

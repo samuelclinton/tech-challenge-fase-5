@@ -1,5 +1,5 @@
 package com.ecommerce.auth.domain.model;
 
-public enum Authority {
+public enum RoleType {
     CUSTOMER, ADMIN
 }

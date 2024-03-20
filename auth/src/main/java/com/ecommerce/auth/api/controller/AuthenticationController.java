@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 public interface AuthenticationController {
 
     User register(NewUserDto newUserDto);
-    TokenDto authenticate(LoginDto loginDto);
+    TokenDto login(LoginDto loginDto);
 
     ResponseEntity<Void> validateToken(String authorizationHeader);
 

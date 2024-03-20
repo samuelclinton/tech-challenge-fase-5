@@ -1,16 +1,16 @@
 package com.ecommerce.auth.domain.model.validation;
 
-import com.ecommerce.auth.domain.model.Authority;
+import com.ecommerce.auth.domain.model.RoleType;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class AuthorityValidator implements ConstraintValidator<ValidAuthority, String> {
+public class RoleValidator implements ConstraintValidator<ValidRole, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
         boolean valid = false;
-        for (Authority authority : Authority.values()) {
-            if (authority.name().equals(value)) {
+        for (RoleType roleType : RoleType.values()) {
+            if (roleType.name().equals(value)) {
                 valid = true;
                 break;
             }
