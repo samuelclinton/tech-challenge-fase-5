@@ -5,12 +5,11 @@ import com.ecommerce.storage.api.model.NewItemDto;
 import com.ecommerce.storage.domain.model.Item;
 import com.ecommerce.storage.domain.service.ItemService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/items")
@@ -24,7 +23,7 @@ public class ItemControllerImpl implements ItemController {
 
     @Override
     @GetMapping
-    public Flux<Item> list(@RequestParam(defaultValue = "10") int size,
+    public Page<Item> list(@RequestParam(defaultValue = "10") int size,
                            @RequestParam(defaultValue = "0") int page,
                            @RequestParam(defaultValue = "asc") String sortDirection,
                            @RequestParam(defaultValue = "name") String sortProperty) {
@@ -35,22 +34,22 @@ public class ItemControllerImpl implements ItemController {
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Item> register(@RequestBody @Valid NewItemDto newItemDto) {
+    public Item register(@RequestBody @Valid NewItemDto newItemDto) {
         Item newItem = new Item(null, newItemDto.getName(), newItemDto.getPrice());
         return itemService.register(newItem);
     }
 
     @Override
     @PutMapping("/{itemId}/price")
-    public Mono<Item> changePrice(@PathVariable String itemId, @RequestBody @Valid ChangePriceDto changePriceDto) {
+    public Item changePrice(@PathVariable String itemId, @RequestBody @Valid ChangePriceDto changePriceDto) {
         return itemService.changePrice(itemId, changePriceDto.getNewPrice());
     }
 
     @Override
     @DeleteMapping("/{itemId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> delete(@PathVariable String itemId) {
-        return itemService.delete(itemId);
+    public void delete(@PathVariable String itemId) {
+        itemService.delete(itemId);
     }
 
 }
