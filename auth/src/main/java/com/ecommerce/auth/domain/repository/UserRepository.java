@@ -1,12 +1,13 @@
 package com.ecommerce.auth.domain.repository;
 
 import com.ecommerce.auth.domain.model.User;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
-import reactor.core.publisher.Mono;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends ReactiveMongoRepository<User, String> {
+import java.util.Optional;
 
-    Mono<User> findByEmail(String email);
-    Mono<User> findByCpf(String cpf);
+public interface UserRepository extends MongoRepository<User, String> {
+
+    Optional<User> findByEmail(String email);
+    Optional<User> findByCpf(String cpf);
 
 }
