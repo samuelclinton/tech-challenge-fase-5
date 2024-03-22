@@ -2,7 +2,7 @@ package com.ecommerce.shoppingcart.domain.model;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class CartItem {
 
     private String id;
     private String name;

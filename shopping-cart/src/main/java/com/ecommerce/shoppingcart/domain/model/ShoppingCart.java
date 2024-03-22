@@ -13,7 +13,7 @@ public class ShoppingCart {
     @MongoId
     private String id;
     private String costumerId;
-    private final Set<Item> items = new HashSet<>();
+    private final Set<CartItem> cartItems = new HashSet<>();
     private BigDecimal subtotal;
 
     public ShoppingCart(String id, String costumerId, BigDecimal subtotal) {
@@ -22,18 +22,18 @@ public class ShoppingCart {
         this.subtotal = subtotal;
     }
 
-    public void addItem(Item item) {
-        this.items.add(item);
+    public void addItem(CartItem item) {
+        this.cartItems.add(item);
         this.subtotal = this.subtotal.add(item.getTotalPrice());
     }
 
-    public void removeItem(Item item) {
-        this.items.remove(item);
+    public void removeItem(CartItem item) {
+        this.cartItems.remove(item);
         this.subtotal = this.subtotal.subtract(item.getTotalPrice());
     }
 
     public void clear() {
-        this.items.forEach(this::removeItem);
+        this.cartItems.forEach(this::removeItem);
     }
 
 }

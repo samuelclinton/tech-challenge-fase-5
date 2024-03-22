@@ -1,13 +1,14 @@
 package com.ecommerce.shoppingcart.domain.repository;
 
 import com.ecommerce.shoppingcart.domain.model.ShoppingCart;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 @Repository
-public interface ShoppingCartRepository extends ReactiveMongoRepository<ShoppingCart, String> {
+public interface ShoppingCartRepository extends MongoRepository<ShoppingCart, String> {
 
-    Mono<ShoppingCart> findByCostumerId(String costumerId);
+    Optional<ShoppingCart> findByCostumerId(String costumerId);
 
 }
