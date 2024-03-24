@@ -1,0 +1,70 @@
+networks:
+  docker-network:
+    driver: bridge
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - docker-network
+  auth:
+    image: ecommerce-auth
+    build: ./auth
+    ports:
+      - "8080:8080"
+    networks:
+      - docker-network
+    environment:
+      WAIT_HOSTS: mongodb:27017
+      DB_HOST: mongodb
+    command: sh -c "/wait && java -jar /app/auth.jar"
+  storage:
+    image: ecommerce-storage
+    build: ./storage
+    ports:
+      - "8081:8081"
+    networks:
+      - docker-network
+    environment:
+      WAIT_HOSTS: mongodb:27017
+      DB_HOST: mongodb
+    command: sh -c "/wait && java -jar /app/storage.jar"
+  shopping-cart:
+    image: ecommerce-shopping-cart
+    build: ./shopping-cart
+    ports:
+      - "8082:8082"
+    networks:
+      - docker-network
+    environment:
+      WAIT_HOSTS: mongodb:27017
+      DB_HOST: mongodb
+      STORAGE_HOST: storage
+    command: sh -c "/wait && java -jar /app/shopping-cart.jar"
+  payment:
+    image: ecommerce-payment
+    build: ./payment
+    ports:
+      - "8083:8083"
+    networks:
+      - docker-network
+    environment:
+      WAIT_HOSTS: mongodb:27017
+      DB_HOST: mongodb
+      SHOPPING-CART_HOST: shopping-cart
+    command: sh -c "/wait && java -jar /app/payment.jar"
+  gateway:
+    image: ecommerce-gateway
+    build: ./gateway
+    ports:
+      - "8888:8888"
+    networks:
+      - docker-network
+    environment:
+      WAIT_HOSTS: mongodb:27017
+      AUTH_HOST: auth
+      STORAGE_HOST: storage
+      SHOPPING-CART_HOST: shopping-cart
+      PAYMENT_HOST: payment
+    command: sh -c "/wait && java -jar /app/gateway.jar"
