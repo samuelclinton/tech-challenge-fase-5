@@ -19,7 +19,8 @@ public class ItemServiceImpl implements ItemService {
         this.itemRepository = itemRepository;
     }
 
-    private Item get(String itemId) {
+    @Override
+    public Item get(String itemId) {
         return itemRepository.findById(itemId)
                 .orElseThrow(() -> new ItemNotFoundException(itemId));
     }

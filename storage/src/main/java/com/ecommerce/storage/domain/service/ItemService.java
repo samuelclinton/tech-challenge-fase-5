@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 public interface ItemService {
 
+    Item get(String id);
     Page<Item> list(Pageable pageable);
     Item register(Item item);
     Item changePrice(String itemId, BigDecimal newPrice);

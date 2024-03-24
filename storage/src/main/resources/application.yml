@@ -9,3 +9,6 @@ spring:
 logging:
   level:
     web: debug
+springdoc:
+  swagger-ui:
+    path: docs.html

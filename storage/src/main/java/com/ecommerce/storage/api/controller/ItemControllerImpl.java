@@ -22,6 +22,12 @@ public class ItemControllerImpl implements ItemController {
     }
 
     @Override
+    @GetMapping("/{id}")
+    public Item get(@PathVariable String id) {
+        return itemService.get(id);
+    }
+
+    @Override
     @GetMapping
     public Page<Item> list(@RequestParam(defaultValue = "10") int size,
                            @RequestParam(defaultValue = "0") int page,

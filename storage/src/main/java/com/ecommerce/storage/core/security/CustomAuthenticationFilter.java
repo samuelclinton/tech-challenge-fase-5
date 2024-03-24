@@ -10,14 +10,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 @Component
 public class CustomAuthenticationFilter extends OncePerRequestFilter {
+
+    private final List<String> unsecuredPaths = List.of("/v3/api-docs/**", "/docs.html", "/swagger-ui/**");
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
@@ -33,6 +37,18 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
         } else {
             throw new AccessDeniedException("Dados de usuário autenticado não fornecidos");
         }
+    }
+
+    @Override
+    protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
+        boolean shouldNotFilter = false;
+        for (String unsecuredPath : this.unsecuredPaths) {
+            var matcher = new AntPathRequestMatcher(unsecuredPath);
+            if (matcher.matches(request)) {
+                shouldNotFilter = true;
+            }
+        }
+        return shouldNotFilter;
     }
 
 }
