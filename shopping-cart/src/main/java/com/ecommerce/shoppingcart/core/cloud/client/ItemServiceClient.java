@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(
         value = "item-service-client",
-        url = "http://localhost:8081",
         configuration = ClientConfiguration.class
 )
 public interface ItemServiceClient {

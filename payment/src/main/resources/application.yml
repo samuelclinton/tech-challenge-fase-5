@@ -6,6 +6,12 @@ spring:
       uri: mongodb://${db.host:localhost}:27017/${db.name:ecommerce-payment}
       database: ${db.name:ecommerce-payment}
       auto-index-creation: true
+  cloud:
+    openfeign:
+      client:
+        config:
+          shopping-cart-client:
+            url: http://${shopping-cart.host}:8082
 logging:
   level:
     web: debug

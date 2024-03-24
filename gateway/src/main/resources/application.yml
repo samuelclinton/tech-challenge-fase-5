@@ -3,28 +3,28 @@ spring:
     gateway:
       routes:
         - id: auth
-          uri: http://localhost:8080
+          uri: http://${auth.host:localhost}:8080
           predicates:
             - Path=/auth/**
           filters:
             - StripPrefix=1
             - AuthenticationFilter
         - id: storage
-          uri: http://localhost:8081
+          uri: http://${storage.host:localhost}:8081
           predicates:
             - Path=/storage/**
           filters:
             - StripPrefix=1
             - AuthenticationFilter
         - id: shopping-cart
-          uri: http://localhost:8082
+          uri: http://${shopping-cart.host:localhost}:8082
           predicates:
             - Path=/shopping-cart/**
           filters:
             - StripPrefix=1
             - AuthenticationFilter
         - id: payment
-          uri: http://localhost:8083
+          uri: http://${payment.host:localhost}:8083
           predicates:
             - Path=/payment/**
           filters:
@@ -36,3 +36,5 @@ logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     reactor.netty.http.client: DEBUG
+authentication-filter:
+  host: ${auth.host:localhost}

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(
         value = "shopping-cart-client",
-        url = "http://localhost:8082",
         configuration = ClientConfiguration.class)
 public interface ShoppingCartClient {
 

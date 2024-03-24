@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.io.buffer.DataBufferFactory;
@@ -27,6 +28,10 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 
     @Qualifier("unsecuredEndpoints")
     private final List<String> unsecuredEndpoints;
+
+    @Value("${authentication-filter.host}")
+    private String validateTokenHost;
+
     private final ObjectMapper objectMapper;
     private Predicate<ServerHttpRequest> isSecured;
     private final WebClient webClient = WebClient.builder().build();
@@ -51,7 +56,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 
             if(isSecured.test(request)) {
                 return webClient.get()
-                        .uri("http://localhost:8080/validate-token")
+                        .uri("http://" + validateTokenHost + ":8080/validate-token")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken)
                         .retrieve().toBodilessEntity()
                         .map(response -> {
