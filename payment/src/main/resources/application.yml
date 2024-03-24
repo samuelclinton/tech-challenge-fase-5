@@ -1,0 +1,11 @@
+server:
+  port: 8083
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${db.host:localhost}:27017/${db.name:ecommerce-payment}
+      database: ${db.name:ecommerce-payment}
+      auto-index-creation: true
+logging:
+  level:
+    web: debug

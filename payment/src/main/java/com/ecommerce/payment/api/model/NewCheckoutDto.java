@@ -2,23 +2,19 @@ package com.ecommerce.payment.api.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
-import java.time.YearMonth;
+import java.math.BigDecimal;
 
 @Data
-public class CreditCard {
+public class NewCheckoutDto {
 
     @NotBlank
-    private String number;
-
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    private String cvv;
+    private String costumerId;
 
     @NotNull
-    private YearMonth expiration;
+    @PositiveOrZero
+    private BigDecimal shipping;
 
 }

@@ -1,8 +1,11 @@
 package com.ecommerce.payment.domain.model;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 
-public class Item {
+@Data
+public class CartItem {
 
     private String id;
     private String name;
