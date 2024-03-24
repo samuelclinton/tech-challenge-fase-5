@@ -8,11 +8,31 @@ spring:
             - Path=/auth/**
           filters:
             - StripPrefix=1
+            - AuthenticationFilter
         - id: storage
           uri: http://localhost:8081
           predicates:
             - Path=/storage/**
           filters:
             - StripPrefix=1
+            - AuthenticationFilter
+        - id: shopping-cart
+          uri: http://localhost:8082
+          predicates:
+            - Path=/shopping-cart/**
+          filters:
+            - StripPrefix=1
+            - AuthenticationFilter
+        - id: payment
+          uri: http://localhost:8083
+          predicates:
+            - Path=/payment/**
+          filters:
+            - StripPrefix=1
+            - AuthenticationFilter
 server:
   port: 8888
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
