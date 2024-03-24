@@ -27,7 +27,10 @@ public class SecurityConfig {
                 .addFilterAt(customAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(sessionConfigurer
                         -> sessionConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
+                .authorizeHttpRequests(auth ->
+                        auth
+                                .requestMatchers("/v3/api-docs/**", "/docs.html", "/swagger-ui/**").permitAll()
+                                .anyRequest().authenticated());
         return http.build();
     }
 
