@@ -20,7 +20,13 @@ import java.util.List;
 public class CustomJwtFilter extends OncePerRequestFilter {
 
     private final TokenService tokenService;
-    private final List<String> unsecuredPaths = List.of("/login", "/register", "/validate-token");
+    private final List<String> unsecuredPaths = List.of(
+            "/login",
+            "/register",
+            "/validate-token",
+            "/v3/api-docs/**",
+            "/docs.html",
+            "/swagger-ui/**");
 
     public CustomJwtFilter(TokenService tokenService) {
         this.tokenService = tokenService;
