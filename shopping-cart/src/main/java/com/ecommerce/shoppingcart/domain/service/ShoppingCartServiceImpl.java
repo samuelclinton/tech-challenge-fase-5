@@ -39,7 +39,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Transactional
     public ShoppingCart addItem(String costumerId, NewCartItemDto newCartItemDto) {
         ShoppingCart shoppingCart = getOrCreateNew(costumerId);
-        Item item = itemServiceClient.getItem(newCartItemDto.getId());
+        Item item = itemServiceClient.getItem(newCartItemDto.getItemId());
         CartItem newCartItem = new CartItem(newCartItemDto.getAmount(), item);
 
         if (shoppingCart.getCartItems().contains(newCartItem)) {

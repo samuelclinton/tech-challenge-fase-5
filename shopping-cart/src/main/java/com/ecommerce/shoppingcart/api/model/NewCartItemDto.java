@@ -1,24 +1,28 @@
 package com.ecommerce.shoppingcart.api.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
+import static com.ecommerce.shoppingcart.core.springdoc.SchemaExampleUtils.ID_EXAMPLE;
+
 public class NewCartItemDto {
 
     @NotBlank
-    private String id;
+    @Schema(example = ID_EXAMPLE, description = "O ID do item a ser adicionado")
+    private String itemId;
 
     @NotNull
     @PositiveOrZero
     private Integer amount;
 
-    public String getId() {
-        return id;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     public Integer getAmount() {
