@@ -1,0 +1,57 @@
+{
+	"id": "b90e4ac4-3a8e-48c9-8a9d-369c9e276dbf",
+	"name": "E-commerce",
+	"values": [
+		{
+			"key": "userId",
+			"value": "null",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "auth_host",
+			"value": "http://localhost:8080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cpf",
+			"value": "null",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "email",
+			"value": "null",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "itemId",
+			"value": "null",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "gateway_host",
+			"value": "http://localhost:8888",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "null",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "paymentId",
+			"value": "null",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-03-24T23:57:36.350Z",
+	"_postman_exported_using": "Postman/10.24.7"
+}
